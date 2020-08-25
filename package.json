@@ -1,0 +1,28 @@
+{
+  "name": "ml-app",
+  "version": "1.0.0",
+  "description": "Test práctico Frontend ML",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm start",
+    "server": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+  },
+  "keywords": [
+    "JavaScript",
+    "React JS",
+    "Express JS",
+    "Node JS"
+  ],
+  "author": "Mig Rozo <angelorozo13@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.4"
+  }
+}
