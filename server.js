@@ -47,7 +47,7 @@ const getItem = itemId => (
 						amount: item.base_price,
 						decimals: item.currency.decimal_places
 					},
-					picture: item.pictures[0],
+					picture: item.pictures[0].url,
 					condition: item.condition,
 					free_shipping: item.shipping.free_shipping,
 					sold_quantity: item.sold_quantity,
@@ -73,6 +73,7 @@ const getSearchCategories = query => (
 		.catch( err => console.log(err) )
 );
 
+// Search Results
 app.get('/api/items', (req, res) => {
 	axios.get( `${MLAPI}/sites/MLA/search?limit=4&q=${req.query.q}` )
 		.then( ({ data }) => (
@@ -80,7 +81,7 @@ app.get('/api/items', (req, res) => {
 				.then( categoriesRes => ({...data, categories: categoriesRes}) )
 		))
 		.then( data => {
-			const searchItems = data.results.map( item => getItem(item.id).then( r => r.item ) );
+			const searchItems = data.results.map( (item, i) => getCurrencyInfo(item.currency_id).then(r => ({...item, currency: r})) );
 			return { ...data, items: Promise.all(searchItems) };
 		})
 		.then( data => {
@@ -91,7 +92,18 @@ app.get('/api/items', (req, res) => {
 						lastname: ''
 					},
 					categories: data.categories,
-					items: itemsList
+					items: itemsList.map(item => ({
+						id: item.id,
+						title: item.title,
+						price: {
+							currency: item.currency.id,
+							amount: item.price,
+							decimals: item.currency.decimal_places
+						},
+						picture: item.thumbnail,
+						condition: item.condition,
+						free_shipping: item.shipping.free_shipping
+					}))
 				};
 				res.send(resultsFormat);
 			});
@@ -99,6 +111,7 @@ app.get('/api/items', (req, res) => {
 		.catch( err => console.log(err) );
 });
 
+// Item Detail
 app.get('/api/items/:id', (req, res) => {
 	getItem(req.params.id).then( item => res.send(item) );
 });

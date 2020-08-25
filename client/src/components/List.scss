@@ -1,0 +1,115 @@
+@import '../variables';
+// List
+.breadcrumb{
+	color: $gray2;
+	display: block;
+	margin: 1.6rem 0;
+	font-size: 1.4rem;
+	line-height: 1;
+	span{
+		&::after{
+			content: '';
+			display: inline-block;
+			vertical-align: middle;
+			width: 0.35em;
+			height: 0.35em;
+			margin: -0.1em 0.6em 0;
+			border: solid;
+			border-width: 1px 1px 0 0;
+			transform: rotate(45deg);
+		}
+		&:last-child{
+			font-weight: 700;
+			&::after{
+				display: none;
+			}
+		}
+	}
+}
+
+.results{
+	&_list{
+		background: $white;
+		display: block;
+		margin: $space1 0;
+		padding: 0;
+		list-style: none;
+	}
+	&_item{
+		display: block;
+		padding: 0 $space1;
+		&.freeship{
+			.results_price::after{
+				background: url('/img/icon-shipping.png') no-repeat center center / contain;
+				display: inline-block;
+				vertical-align: middle;
+				width: 1.8rem;
+				height: 1.8rem;
+				margin-left: 0.5em;
+				content: '';
+			}
+		}
+		&:last-child{
+			.results_link{
+				border-bottom: 0;
+			}
+		}
+	}
+	&_link{
+		color: inherit;
+		display: block;
+		padding: $space1 0;
+		border-bottom: 1px solid $gray3;
+		text-decoration: none;
+		&:hover{
+			.results_pic{
+				opacity: 0.6;
+			}
+		}
+	}
+	&_pic{
+		flex: 0 0 auto;
+		display: block;
+		width: 18rem;
+		height: 18rem;
+		margin-right: $space1;
+		border-radius: 0.4rem;
+		object-fit: cover;
+	}
+	&_price{
+		display: block;
+		margin-bottom: $space2;
+		font-size: 2.4rem;
+		font-weight: 400;
+		line-height: 1;
+	}
+	&_title{
+		font-size: 1.8rem;
+		font-weight: 400;
+	}
+	&_aside{
+		color: $gray2;
+		display: block;
+		width: 10rem;
+		margin: auto;
+		margin-right: $space1;
+		font-size: 1.2rem;
+		text-align: right;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.results{
+		&_link{
+			flex-wrap: wrap;
+		}
+		&_pic{
+			margin-right: 0;
+			margin-bottom: $space2;
+		}
+		&_aside{
+			width: 100%;
+			text-align: left;
+		}
+	}
+}

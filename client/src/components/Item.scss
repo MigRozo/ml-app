@@ -1,0 +1,89 @@
+@import '../variables';
+
+// Item
+.detail{
+	display: block;
+	margin: $space1 0;
+	&_item{
+		background: $white;
+		display: block;
+		padding: $space2;
+	}
+	&_pic{
+		flex: 1 1;
+		background-color: $gray3;
+		display: block;
+		width: 68rem;
+		max-width: 100%;
+		height: 68rem;
+		margin-right: $space1;
+		border-radius: 0.4rem;
+		object-fit: contain;
+	}
+	&_info{
+		display: block;
+		width: 30%;
+	}
+	&_dets{
+		display: block;
+		margin: $space1 0;
+		font-size: 1.4rem;
+		line-height: 1;
+	}
+	&_title{
+		display: block;
+		margin: $space1 0;
+		font-size: 2.4rem;
+		font-weight: 700;
+	}
+	&_price{
+		display: block;
+		margin: $space2 0;
+		font-size: 4.6rem;
+		font-weight: 400;
+		line-height: 1;
+	}
+	&_btn{
+		background: $blue;
+		color: $white;
+		display: block;
+		padding: 0.8em;
+		border-radius: 0.4rem;
+		font-size: 1.8rem;
+		line-height: 1;
+		text-align: center;
+		text-decoration: none;
+		&:hover{
+			background: $yellow;
+			color: $gray1;
+		}
+	}
+	&_bottom{
+		display: block;
+		width: 100%;
+		max-width: 68rem;
+		margin-top: 5rem;
+		h2{
+			display: block;
+			margin-bottom: $space2;
+			font-size: 2.8rem;
+		}
+		p{
+			color: $gray2;
+		}
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.detail{
+		&_top{
+			flex-wrap: wrap;
+		}
+		&_pic{
+			height: auto;
+		}
+		&_info{
+			width: 100%;
+		}
+	}
+}
